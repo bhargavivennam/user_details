@@ -23,7 +23,7 @@ public class BenchProfilesServiceImpl implements BenchProfilesService {
     }
 
     @Override
-    public void createUserDetails(MultipartFile file) throws Exception {
+    public void uploadUserDetails(MultipartFile file) throws Exception {
         List<BenchProfilesInfo> benchProfilesInfo = benchProfilesExcelReaderService.readBenchProfilesExcelFile(file);
         benchProfilesRepository.saveAll(benchProfilesInfo);
     }

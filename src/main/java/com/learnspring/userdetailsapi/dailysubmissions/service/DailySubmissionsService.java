@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DailySubmissionsService {
-    void createSubmissionDetails(MultipartFile file) throws Exception;
+    void uploadSubmissionDetails(MultipartFile file) throws Exception;
 
     DailySubmissionsInfo createSubmissionInfoDetails(DailySubmissionsDto dailySubmissionsDto);
 

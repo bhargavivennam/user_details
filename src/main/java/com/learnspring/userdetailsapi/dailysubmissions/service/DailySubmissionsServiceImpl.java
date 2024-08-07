@@ -23,7 +23,7 @@ public class DailySubmissionsServiceImpl implements DailySubmissionsService {
     }
 
     @Override
-    public void createSubmissionDetails(MultipartFile file) throws Exception {
+    public void uploadSubmissionDetails(MultipartFile file) throws Exception {
 //        List<DailySubmissionsInfo> d = dailySubmissionsExcelReaderService.readExcelFile(file);
         List<DailySubmissionsInfo> dailySubmissionsInfo = dailySubmissionsExcelReaderService.readDailySubmissionsExcelFile(file);
         dailySubmissionsRepository.saveAll(dailySubmissionsInfo);
