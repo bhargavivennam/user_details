@@ -19,7 +19,7 @@ import java.util.Arrays;
 @Component
 public class LoggingAspect {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    public final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     /**
      * Pointcut that matches all repositories, services and Web REST endpoints.
@@ -35,11 +35,11 @@ public class LoggingAspect {
      * Pointcut that matches all Spring beans in the application's main packages.
      */
     @Pointcut("within(com.learnspring.userdetailsapi.benchprofiles..*)" +
-//            " || within(com.learnspring.userdetailsapi.benchprofiles.service..*)" +
-//            " || within(com.learnspring.userdetailsapi.benchprofiles.controller..*)" +
-            " || within(com.learnspring.userdetailsapi.dailysubmissions..*)")
-//            " || within(com.learnspring.userdetailsapi.dailysubmissions.service..*)" +
-//            " || within(com.learnspring.userdetailsapi.dailysubmissions.controller..*)")
+            " || within(com.learnspring.userdetailsapi.benchprofiles.service..*)" +
+            " || within(com.learnspring.userdetailsapi.benchprofiles.controller..*)" +
+            " || within(com.learnspring.userdetailsapi.dailysubmissions..*)" +
+            " || within(com.learnspring.userdetailsapi.dailysubmissions.service..*)" +
+            " || within(com.learnspring.userdetailsapi.dailysubmissions.controller..*)")
     public void applicationPackagePointcut() {
         // Method is empty as this is just a Pointcut, the implementations are in the advices.
     }

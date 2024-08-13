@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public record InterviewDto(
         @NotNull
@@ -21,7 +20,7 @@ public record InterviewDto(
         LocalDate interviewDate,
 
         @NotNull
-        LocalTime interviewTime,
+        String interviewTime,
 
         @NotNull
         @Size(min = 6, max = 30, message = "Consultant name should be between 6 and 30 characters")

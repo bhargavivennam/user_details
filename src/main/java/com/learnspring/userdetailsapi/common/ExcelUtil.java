@@ -4,7 +4,6 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.time.LocalDate;
-import java.util.stream.StreamSupport;
 
 public class ExcelUtil {
 
@@ -58,8 +57,19 @@ public class ExcelUtil {
         }
     }
 
+//    public static boolean isEmptyRow(Row row) {
+//        return StreamSupport.stream(row.spliterator(), false)
+//                .allMatch(cell -> cell == null || cell.getCellType() == CellType.BLANK);
+//    }
+
     public static boolean isEmptyRow(Row row) {
-        return StreamSupport.stream(row.spliterator(), false)
-                .allMatch(cell -> cell == null || cell.getCellType() == CellType.BLANK);
+        for (int i = 0; i < row.getLastCellNum(); i++) {
+            var cell = row.getCell(i);
+            if (cell != null && cell.getCellType() != CellType.BLANK) {
+                return false;
+            }
+        }
+        return true;
     }
+
 }

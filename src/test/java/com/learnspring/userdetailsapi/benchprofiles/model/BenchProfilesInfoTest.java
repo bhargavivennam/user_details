@@ -269,4 +269,71 @@ public class BenchProfilesInfoTest {
         assertThat(result).contains("dateCreated=" + dateTime.toString());
         assertThat(result).contains("lastUpdated=" + dateTime.toString());
     }
+
+    @Test
+    public void testBuilder() {
+
+        LocalDate date = LocalDate.now();
+        LocalDateTime dateTime = LocalDateTime.now();
+
+        // Use the builder to create an instance
+        BenchProfilesInfo info = BenchProfilesInfo.builder()
+                .id(1L)
+                .recruiterName("John Doe")
+                .consultantName("Jane Smith")
+                .allocatedStatus("Allocated")
+                .status("Active")
+                .turboCheck(5)
+                .priority("High")
+                .technology("Java")
+                .organization("TechCorp")
+                .experience("8+")
+                .location("New York")
+                .relocation("Yes")
+                .modeOfStaying("Remote")
+                .newOrExisting("New")
+                .sourcedBy("Referral")
+                .visaStatus("H1B")
+                .marketingVisaStatus("Active")
+                .contactNumber("1234567890")
+                .emailId("example@example.com")
+                .originalDob(date)
+                .marketingDob(date)
+                .whatsappNumber("0987654321")
+                .marketingStartDate(date)
+                .marketingEndDate(date)
+                .comments("No comments")
+                .dateCreated(dateTime)
+                .lastUpdated(dateTime)
+                .build();
+
+        // Verify the properties set through the builder
+        assertThat(info.getId()).isEqualTo(1L);
+        assertThat(info.getTurboCheck()).isEqualTo(5);
+        assertThat(info.getPriority()).isEqualTo("High");
+        assertThat(info.getTechnology()).isEqualTo("Java");
+        assertThat(info.getOrganization()).isEqualTo("TechCorp");
+        assertThat(info.getExperience()).isEqualTo("8+");
+        assertThat(info.getLocation()).isEqualTo("New York");
+        assertThat(info.getRelocation()).isEqualTo("Yes");
+        assertThat(info.getModeOfStaying()).isEqualTo("Remote");
+        assertThat(info.getNewOrExisting()).isEqualTo("New");
+        assertThat(info.getSourcedBy()).isEqualTo("Referral");
+        assertThat(info.getVisaStatus()).isEqualTo("H1B");
+        assertThat(info.getMarketingVisaStatus()).isEqualTo("Active");
+        assertThat(info.getContactNumber()).isEqualTo("1234567890");
+        assertThat(info.getEmailId()).isEqualTo("example@example.com");
+        assertThat(info.getOriginalDob()).isEqualTo(date);
+        assertThat(info.getMarketingDob()).isEqualTo(date);
+        assertThat(info.getRecruiterName()).isEqualTo("John Doe");
+        assertThat(info.getConsultantName()).isEqualTo("Jane Smith");
+        assertThat(info.getAllocatedStatus()).isEqualTo("Allocated");
+        assertThat(info.getStatus()).isEqualTo("Active");
+        assertThat(info.getWhatsappNumber()).isEqualTo("0987654321");
+        assertThat(info.getMarketingStartDate()).isEqualTo(date);
+        assertThat(info.getMarketingEndDate()).isEqualTo(date);
+        assertThat(info.getComments()).isEqualTo("No comments");
+        assertThat(info.getDateCreated()).isEqualTo(dateTime);
+        assertThat(info.getLastUpdated()).isEqualTo(dateTime);
+    }
 }

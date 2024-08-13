@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/interviews")
+@RequestMapping("/api/users")
 public class InterviewController {
     private final InterviewService interviewService;
 
@@ -42,7 +42,7 @@ public class InterviewController {
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/interviews/{id}")
     @Operation(summary = "Update Interview Details")
     public ResponseEntity<String> updateInterviewInfo(@PathVariable Long id, @RequestBody InterviewInfo interviewInfo) {
         interviewService.updateInterviewDetails(id, interviewInfo);

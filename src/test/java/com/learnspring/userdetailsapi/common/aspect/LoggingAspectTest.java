@@ -2,103 +2,118 @@
 //
 //import org.aspectj.lang.JoinPoint;
 //import org.aspectj.lang.ProceedingJoinPoint;
-//import org.aspectj.lang.Signature;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.mockito.InOrder;
 //import org.mockito.InjectMocks;
 //import org.mockito.Mock;
-//import org.mockito.junit.jupiter.MockitoExtension;
+//import org.mockito.MockitoAnnotations;
 //import org.slf4j.Logger;
 //
-//import java.lang.reflect.Field;
-//import java.util.Arrays;
-//
 //import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertThrows;
 //import static org.mockito.Mockito.*;
 //
-//@ExtendWith(MockitoExtension.class)
-//public class LoggingAspectTest {
-//
-//    @Mock
-//    private ProceedingJoinPoint proceedingJoinPoint;
-//
-//    @Mock
-//    private JoinPoint joinPoint;
-//
-//    @Mock
-//    private Signature signature;
-//
-//    @Mock
-//    private Logger logger;
+//class LoggingAspectTest {
 //
 //    @InjectMocks
 //    private LoggingAspect loggingAspect;
 //
+//    @Mock
+//    private Logger mockLogger;
+//
+//    @Mock
+//    private JoinPoint mockJoinPoint;
+//
+//    @Mock
+//    private ProceedingJoinPoint mockProceedingJoinPoint;
+//
 //    @BeforeEach
-//    public void setUp() throws Exception {
-//        // Initialize the aspect and set the mocked logger using reflection
-//        setLoggerField(loggingAspect, logger);
-//
-//        when(proceedingJoinPoint.getSignature()).thenReturn(signature);
-//        when(joinPoint.getSignature()).thenReturn(signature);
-//        when(signature.getDeclaringTypeName()).thenReturn("com.learnspring.userdetailsapi.service.DummyService");
-//        when(signature.getName()).thenReturn("dummyMethod");
-//    }
-//
-//    private void setLoggerField(LoggingAspect aspect, Logger logger) throws Exception {
-//        Field loggerField = LoggingAspect.class.getDeclaredField("LOGGER");
-//        loggerField.setAccessible(true);
-//        loggerField.set(aspect, logger);
+//    void setUp() {
+//        MockitoAnnotations.openMocks(this);
 //    }
 //
 //    @Test
-//    public void testLogAfterThrowing() {
-//        Throwable exception = new RuntimeException("Test Exception");
+//    void testLogAfterThrowing() {
+//        // Arrange
+//        Throwable exception = new RuntimeException("Test exception");
+//        when(mockJoinPoint.getSignature()).thenReturn(mock(org.aspectj.lang.Signature.class));
+//        when(mockJoinPoint.getSignature().getDeclaringTypeName()).thenReturn("com.learnspring.userdetailsapi.benchprofiles.controller.BenchProfilesController");
+//        when(mockJoinPoint.getSignature().getName()).thenReturn("fetchBenchProfileDetails");
 //
+//        // Act
+//        loggingAspect.logAfterThrowing(mockJoinPoint, exception);
+//
+//        // Assert
+//        verify(mockLogger).error(eq("Exception in {}.{}() with cause = {}"),
+//                eq("com.learnspring.userdetailsapi.benchprofiles.controller.BenchProfilesController"),
+//                eq("fetchBenchProfileDetails"),
+//                any(Throwable.class)); // Use any(Throwable.class) for matching any Throwable
+//    }
+//
+//    @Test
+//    void testLogAround() throws Throwable {
+//        // Arrange
+//        Object result = "result";
+//        Object[] args = {"arg1", 2};
+//        when(mockProceedingJoinPoint.proceed()).thenReturn(result);
+//        when(mockProceedingJoinPoint.getArgs()).thenReturn(args);
+//        when(mockProceedingJoinPoint.getSignature()).thenReturn(mock(org.aspectj.lang.Signature.class));
+//        when(mockProceedingJoinPoint.getSignature().getDeclaringTypeName()).thenReturn("com.learnspring.userdetailsapi.benchprofiles.controller.BenchProfilesController");
+//        when(mockProceedingJoinPoint.getSignature().getName()).thenReturn("fetchBenchProfileDetails");
+//
+//        // Act
+//        Object returnedResult = loggingAspect.logAround(mockProceedingJoinPoint);
+//
+//        // Assert
+//        verify(mockLogger).debug(eq("Enter: {}.{}() with argument[s] = {}"),
+//                eq("com.learnspring.userdetailsapi.benchprofiles.controller.BenchProfilesController"),
+//                eq("fetchBenchProfileDetails"),
+//                argThat(arguments -> arguments.equals("[arg1, 2]"))); // Use argThat for more complex checks
+//        verify(mockLogger).debug(eq("Exit: {}.{}() with result = {}"),
+//                eq("com.learnspring.userdetailsapi.benchprofiles.controller.BenchProfilesController"),
+//                eq("fetchBenchProfileDetails"),
+//                eq(result));
+//        assertEquals(result, returnedResult);
+//    }
+//
+//    @Test
+//    void testLogAroundWithException() throws Throwable {
+//        // Arrange
+//        IllegalArgumentException exception = new IllegalArgumentException("Invalid argument");
+//        when(mockProceedingJoinPoint.proceed()).thenThrow(exception);
+//        when(mockProceedingJoinPoint.getArgs()).thenReturn(new Object[]{"arg1"});
+//        when(mockProceedingJoinPoint.getSignature()).thenReturn(mock(org.aspectj.lang.Signature.class));
+//        when(mockProceedingJoinPoint.getSignature().getDeclaringTypeName()).thenReturn("com.learnspring.userdetailsapi.benchprofiles.controller.BenchProfilesController");
+//        when(mockProceedingJoinPoint.getSignature().getName()).thenReturn("fetchBenchProfileDetails");
+//
+//        // Act & Assert
+//        try {
+//            loggingAspect.logAround(mockProceedingJoinPoint);
+//        } catch (IllegalArgumentException e) {
+//            // Expected
+//        }
+//
+//        // Verify that the logger was called with the expected parameters
+//        verify(mockLogger).error(eq("Illegal argument: {} in {}.{}()"),
+//                eq("[arg1]"),
+//                eq("com.learnspring.userdetailsapi.benchprofiles.controller.BenchProfilesController"),
+//                eq("fetchBenchProfileDetails"));
+//    }
+//
+//    @Test
+//    public void testLogAfterThrowingWithNullCause() {
+//        // Arrange
+//        JoinPoint joinPoint = mock(JoinPoint.class);
+//        Throwable exception = new RuntimeException("Test exception");
+//        when(joinPoint.getSignature().getDeclaringTypeName()).thenReturn("com.learnspring.userdetailsapi.service.BenchProfilesService");
+//        when(joinPoint.getSignature().getName()).thenReturn("getUserDetails");
+//        when(exception.getCause()).thenReturn(null);
+//
+//        LoggingAspect loggingAspect = new LoggingAspect();
+//
+//        // Act
 //        loggingAspect.logAfterThrowing(joinPoint, exception);
 //
-//        verify(logger).error("Exception in {}.{}() with cause = {}", "com.learnspring.userdetailsapi.service.DummyService",
-//                "dummyMethod", exception.getCause() != null ? exception.getCause() : "NULL");
-//    }
-//
-//    @Test
-//    public void testLogAround() throws Throwable {
-//        Object[] args = new Object[]{"arg1", "arg2"};
-//        when(proceedingJoinPoint.getArgs()).thenReturn(args);
-//        when(proceedingJoinPoint.proceed()).thenReturn("result");
-//        when(logger.isDebugEnabled()).thenReturn(true);
-//
-//        Object result = loggingAspect.logAround(proceedingJoinPoint);
-//
-//        InOrder inOrder = inOrder(logger, proceedingJoinPoint);
-//        inOrder.verify(logger).debug("Enter: {}.{}() with argument[s] = {}", "com.learnspring.userdetailsapi.service.DummyService",
-//                "dummyMethod", Arrays.toString(args));
-//        inOrder.verify(proceedingJoinPoint).proceed();
-//        inOrder.verify(logger).debug("Exit: {}.{}() with result = {}", "com.learnspring.userdetailsapi.service.DummyService",
-//                "dummyMethod", "result");
-//
-//        assertEquals("result", result);
-//    }
-//
-//    @Test
-//    public void testLogAroundWithException() throws Throwable {
-//        Object[] args = new Object[]{"arg1", "arg2"};
-//        when(proceedingJoinPoint.getArgs()).thenReturn(args);
-//        when(proceedingJoinPoint.proceed()).thenThrow(new IllegalArgumentException("Test Exception"));
-//        when(logger.isDebugEnabled()).thenReturn(true);
-//
-//        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-//            loggingAspect.logAround(proceedingJoinPoint);
-//        });
-//
-//        assertEquals("Test Exception", exception.getMessage());
-//
-//        verify(logger).debug("Enter: {}.{}() with argument[s] = {}", "com.learnspring.userdetailsapi.service.DummyService",
-//                "dummyMethod", Arrays.toString(args));
-//        verify(logger).error("Illegal argument: {} in {}.{}()", Arrays.toString(args),
-//                "com.learnspring.userdetailsapi.service.DummyService", "dummyMethod");
+//        // Assert
+//        verify(loggingAspect.LOGGER).error("Exception in com.learnspring.userdetailsapi.service.BenchProfilesService.getUserDetails() with cause = NULL");
 //    }
 //}
