@@ -54,12 +54,14 @@
 //        // Arrange
 //        Object result = "result";
 //        Object[] args = {"arg1", 2};
-//        when(mockProceedingJoinPoint.proceed()).thenReturn(result);
-//        when(mockProceedingJoinPoint.getArgs()).thenReturn(args);
-//        when(mockProceedingJoinPoint.getSignature()).thenReturn(mock(org.aspectj.lang.Signature.class));
-//        when(mockProceedingJoinPoint.getSignature().getDeclaringTypeName()).thenReturn("com.learnspring.userdetailsapi.benchprofiles.controller.BenchProfilesController");
-//        when(mockProceedingJoinPoint.getSignature().getName()).thenReturn("fetchBenchProfileDetails");
+//        when(mockLogger.isDebugEnabled()).thenReturn(true);
+////        when(mockProceedingJoinPoint.proceed()).thenReturn(result);
+////        when(mockProceedingJoinPoint.getArgs()).thenReturn(args);
+////        when(mockProceedingJoinPoint.getSignature()).thenReturn(mock(org.aspectj.lang.Signature.class));
+////        when(mockProceedingJoinPoint.getSignature().getDeclaringTypeName()).thenReturn("com.learnspring.userdetailsapi.benchprofiles.controller.BenchProfilesController");
+////        when(mockProceedingJoinPoint.getSignature().getName()).thenReturn("fetchBenchProfileDetails");
 //
+////        when(mockLogger.debug()).thenReturn("Enter: {}.{}() with argument[s]"))
 //        // Act
 //        Object returnedResult = loggingAspect.logAround(mockProceedingJoinPoint);
 //
