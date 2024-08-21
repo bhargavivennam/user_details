@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from GitHub
-                git url: 'https://github.com/bhargavivennam/user_details.git', branch: $BRANCH_NAME
+                git url: 'https://github.com/bhargavivennam/user_details.git', branch: ${BRANCH_NAME}
             }
         }
 
