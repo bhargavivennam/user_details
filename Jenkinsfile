@@ -6,13 +6,14 @@ pipeline {
         MAVEN_HOME = tool name: 'Maven 3.9.8', type: 'maven'
         SONAR_TOKEN = credentials('sonar-cloud-token')
         SONAR_ORGANIZATION = 'bhargavivennam'
+        BRANCH_NAME = 'unit-test-coverage'
     }
 
     stages {
         stage('Checkout') {
             steps {
                 // Checkout code from GitHub
-                git url: 'https://github.com/bhargavivennam/user_details.git', branch: 'unit-test-coverage'
+                git url: 'https://github.com/bhargavivennam/user_details.git', branch: $BRANCH_NAME
             }
         }
 
@@ -33,7 +34,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarCloud') {
-                sh "./mvnw sonar:sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.organization=$SONAR_ORGANIZATION"
+                sh "./mvnw sonar:sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.branch.name=$BRANCH_NAME"
                 }
             }
         }
