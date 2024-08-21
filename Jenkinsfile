@@ -31,13 +31,13 @@ pipeline {
         //     }
         // }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarCloud') {
-                sh "./mvnw sonar:sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.branch.name=$BRANCH_NAME"
-                }
-            }
-        }
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         withSonarQubeEnv('SonarCloud') {
+        //         sh "./mvnw sonar:sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.branch.name=$BRANCH_NAME"
+        //         }
+        //     }
+        // }
         //SONAR
         //Docker Image
 
