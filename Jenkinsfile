@@ -4,8 +4,8 @@ pipeline {
     environment {
         // Define any environment variables if needed
         MAVEN_HOME = tool name: 'Maven 3.9.8', type: 'maven'
-        SONAR_TOKEN = credentials('sonar-cloud-token')
-        SONAR_ORGANIZATION = 'bhargavivennam'
+        // SONAR_TOKEN = credentials('sonar-cloud-token')
+        // SONAR_ORGANIZATION = 'bhargavivennam'
         BRANCH_NAME = 'main'
     }
 
