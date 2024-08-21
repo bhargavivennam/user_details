@@ -34,6 +34,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarCloud') {
                 sh "./mvnw sonar:sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.organization=$SONAR_ORGANIZATION"
+                }
             }
         }
         //SONAR
