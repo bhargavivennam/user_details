@@ -51,9 +51,9 @@ pipeline {
     }
 
     post {
-        always {
-            junit '**/target/surefire-reports/*.xml'
-        }
+        // always {
+        //     junit '**/target/surefire-reports/*.xml'
+        // }
         success {
             echo 'Build and Test were successful!'
         }
