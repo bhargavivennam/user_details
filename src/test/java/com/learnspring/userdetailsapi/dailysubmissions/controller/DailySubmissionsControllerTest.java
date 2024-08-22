@@ -106,7 +106,7 @@ public class DailySubmissionsControllerTest {
     void shouldReturnOkWhenUserFound() {
         // Arrange
         Long userId = 1L;
-        var mockUser = DailySubmissionsInfoMock.getDailySubmissionsInfo();
+        var mockUser = DailySubmissionsInfoMock.shouldGetDailySubmissionsInfo();
         Optional<DailySubmissionsInfo> mockUserOptional = Optional.of(mockUser);
         when(dailySubmissionsService.getSubmissionDetailsByID(userId)).thenReturn(Optional.of(mockUserOptional));
 
@@ -186,9 +186,9 @@ public class DailySubmissionsControllerTest {
 
     @Test
     void shouldCreateBenchProfileInfoSuccess() throws URISyntaxException {
-        DailySubmissionsInfo savedDailySubmissionsInfo = DailySubmissionsInfoMock.createDailySubmissionsProfile();
+        DailySubmissionsInfo savedDailySubmissionsInfo = DailySubmissionsInfoMock.shouldCreateDailySubmissionsProfile();
 
-        var dailySubmissionsDto = DailySubmissionsInfoMock.createDailySubmissionsDetails();
+        var dailySubmissionsDto = DailySubmissionsInfoMock.shouldCreateDailySubmissionsDetails();
 
         //define uriComponentsBuilder and add mock annotation and mock in the method
         DailySubmissionsInfo dailySubmissionsInfo = new DailySubmissionsInfo();
@@ -208,7 +208,7 @@ public class DailySubmissionsControllerTest {
     @Test
     void shouldThrowExceptionWhenCreateDailySubmissionsInfo() {
 
-        var dailySubmissionsDto = DailySubmissionsInfoMock.createDailySubmissionsDetails();
+        var dailySubmissionsDto = DailySubmissionsInfoMock.shouldCreateDailySubmissionsDetails();
 
         when(dailySubmissionsService.createSubmissionInfoDetails(dailySubmissionsDto)).thenThrow(new RuntimeException("Unexpected error"));
 

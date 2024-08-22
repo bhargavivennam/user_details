@@ -90,15 +90,6 @@ public class InterviewControllerTest {
         assertThrows(RuntimeException.class, () -> interviewController.fetchInterviewDetails());
     }
 
-//    @Test
-//    void shouldReturnNotFoundExceptionWhenNoInterviews() {
-//        // Arrange
-//        when(interviewService.getInterviewDetails()).thenReturn(Optional.of(List.of()));
-//
-//        // Act & Assert
-//        assertThrows(UserNotFoundException.class, () -> interviewController.fetchInterviewDetails());
-//    }
-
     @Test
     void shouldReturnInterviewDetails() {
         // Arrange
@@ -126,7 +117,7 @@ public class InterviewControllerTest {
     void shouldReturnOkWhenUserFound() {
         // Arrange
         Long userId = 1L;
-        var mockUser = InterviewsInfoMock.getInterviewInfo();
+        var mockUser = InterviewsInfoMock.shouldGetInterviewInfo();
         Optional<InterviewInfo> mockUserOptional = Optional.of(mockUser);
         when(interviewService.getInterviewDetailsByID(userId)).thenReturn(mockUserOptional);
 
@@ -137,16 +128,6 @@ public class InterviewControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(mockUserOptional, response.getBody());
     }
-
-//    @Test
-//    void shouldThrowUserNotFoundExceptionWhenUserNotFound() {
-//        // Arrange
-//        Long userId = 1L;
-//        when(interviewService.getInterviewDetailsByID(userId)).thenReturn(Optional.empty());
-//
-//        // Act & Assert
-//        assertThrows(UserNotFoundException.class, () -> interviewController.fetchInterviewDetailsByID(userId));
-//    }
 
     @Test
     void shouldReturnNoContentWhenDeleteAllInterviewDetails() {
@@ -206,9 +187,9 @@ public class InterviewControllerTest {
 
     @Test
     void shouldCreateInterviewInfoSuccess() throws URISyntaxException {
-        InterviewInfo savedInterviewInfo = InterviewsInfoMock.createInterviewProfile();
+        InterviewInfo savedInterviewInfo = InterviewsInfoMock.shouldCreateInterviewProfile();
 
-        var interviewDto = InterviewsInfoMock.createInterviewDetails();
+        var interviewDto = InterviewsInfoMock.shouldCreateInterviewDetails();
 
         //define uriComponentsBuilder and add mock annotation and mock in the method
         InterviewInfo interviewInfo = new InterviewInfo();
@@ -228,7 +209,7 @@ public class InterviewControllerTest {
     @Test
     void shouldThrowExceptionWhenCreateInterviewsInfo() {
 
-        var interviewDto = InterviewsInfoMock.createInterviewDetails();
+        var interviewDto = InterviewsInfoMock.shouldCreateInterviewDetails();
 
         when(interviewService.createInterviewInfoDetails(interviewDto)).thenThrow(new RuntimeException("Unexpected error"));
 

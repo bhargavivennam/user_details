@@ -32,7 +32,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getStringCellValue_ReturnsStringValue_WhenCellIsString() {
+    void shouldReturnStringValueWhenCellIsString() {
         when(mockRow.getCell(0)).thenReturn(mockCell);
         when(mockCell.getCellType()).thenReturn(CellType.STRING);
         when(mockCell.getStringCellValue()).thenReturn("Test String");
@@ -43,7 +43,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getStringCellValue_ReturnsTrimmedStringValue_WhenCellIsStringWithWhitespace() {
+    void shouldReturnTrimmedStringValueWhenCellIsStringWithWhitespace() {
         when(mockRow.getCell(0)).thenReturn(mockCell);
         when(mockCell.getCellType()).thenReturn(CellType.STRING);
         when(mockCell.getStringCellValue()).thenReturn("  Test String  ");
@@ -54,7 +54,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getStringCellValue_ReturnsNumericValueAsString_WhenCellIsNumeric() {
+    void shouldReturnNumericValueAsStringWhenCellIsNumeric() {
         when(mockRow.getCell(0)).thenReturn(mockCell);
         when(mockCell.getCellType()).thenReturn(CellType.NUMERIC);
         when(mockCell.getNumericCellValue()).thenReturn(123.0);
@@ -65,7 +65,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getStringCellValue_ReturnsNull_WhenCellIsNull() {
+    void shouldReturnNullWhenStringCellIsNull() {
         when(mockRow.getCell(0)).thenReturn(null);
 
         String result = ExcelUtil.getStringCellValue(mockRow, 0);
@@ -74,7 +74,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getStringCellValue_ReturnsNull_WhenCellTypeIsNotStringOrNumeric() {
+    void shouldReturnNullWhenCellTypeIsNotStringOrNumeric() {
         when(mockRow.getCell(0)).thenReturn(mockCell);
         when(mockCell.getCellType()).thenReturn(CellType.BOOLEAN);
 
@@ -84,7 +84,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getIntegerCellValue_ReturnsIntegerValue_WhenCellIsNumeric() {
+    void shouldReturnIntegerValueWhenCellIsNumeric() {
         when(mockRow.getCell(0)).thenReturn(mockCell);
         when(mockCell.getCellType()).thenReturn(CellType.NUMERIC);
         when(mockCell.getNumericCellValue()).thenReturn(123.0);
@@ -95,7 +95,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getIntegerCellValue_ReturnsNull_WhenCellIsNull() {
+    void shouldReturnNullWhenCellIsNull() {
         when(mockRow.getCell(0)).thenReturn(null);
 
         Integer result = ExcelUtil.getIntegerCellValue(mockRow, 0);
@@ -104,7 +104,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getIntegerCellValue_ReturnsNull_WhenCellIsBlank() {
+    void shouldReturnNullWhenIntegerCellIsBlank() {
         when(mockRow.getCell(0)).thenReturn(mockCell);
         when(mockCell.getCellType()).thenReturn(CellType.BLANK);
 
@@ -114,7 +114,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getIntegerCellValue_ReturnsZero_WhenCellIsStringAndNotParsable() {
+    void shouldReturnZeroWhenCellIsStringAndNotParsable() {
         when(mockRow.getCell(0)).thenReturn(mockCell);
         when(mockCell.getCellType()).thenReturn(CellType.STRING);
         when(mockCell.getStringCellValue()).thenReturn("Not a number");
@@ -125,7 +125,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getDateCellValue_ReturnsDate_WhenCellIsNumeric() {
+    void shouldReturnDateWhenCellIsNumeric() {
         when(mockRow.getCell(0)).thenReturn(mockCell);
         when(mockCell.getCellType()).thenReturn(CellType.NUMERIC);
         LocalDateTime mockDate = LocalDateTime.of(2023, 8, 9, 0, 0);
@@ -137,7 +137,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getDateCellValue_ReturnsNull_WhenCellIsNull() {
+    void shouldReturnNullWhenDateCellIsNull() {
         when(mockRow.getCell(0)).thenReturn(null);
 
         LocalDate result = ExcelUtil.getDateCellValue(mockRow, 0);
@@ -146,7 +146,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getDateCellValue_ReturnsNull_WhenCellIsBlank() {
+    void shouldReturnNullWhenDateCellIsBlank() {
         when(mockRow.getCell(0)).thenReturn(mockCell);
         when(mockCell.getCellType()).thenReturn(CellType.BLANK);
 
@@ -156,7 +156,7 @@ class ExcelUtilTest {
     }
 
     @Test
-    void getDateCellValue_ReturnsNull_WhenCellContainsInvalidString() {
+    void shouldReturnNullWhenCellContainsInvalidString() {
         when(mockRow.getCell(0)).thenReturn(mockCell);
         when(mockCell.getCellType()).thenReturn(CellType.STRING);
         when(mockCell.getStringCellValue()).thenReturn("Invalid Date");
@@ -166,29 +166,8 @@ class ExcelUtilTest {
         assertNull(result);
     }
 
-//    @Test
-//    void isEmptyRow_ReturnsTrue_WhenAllCellsAreBlank() {
-//        when(mockRow.spliterator()).thenReturn(StreamSupport.spliteratorUnknownSize(Stream.empty(), 0));
-//
-//        boolean result = ExcelUtil.isEmptyRow(mockRow);
-//
-//        assertTrue(result);
-//    }
-//
-//    @Test
-//    void isEmptyRow_ReturnsFalse_WhenAtLeastOneCellIsNotBlank() {
-//        when(mockRow.spliterator()).thenReturn(StreamSupport.spliteratorUnknownSize(Stream.of(mockCell).iterator(), 0));
-//        when(mockCell.getCellType()).thenReturn(CellType.STRING);
-//        when(mockCell.getStringCellValue()).thenReturn("Test");
-//
-//        boolean result = ExcelUtil.isEmptyRow(mockRow);
-//
-//        assertFalse(result);
-//    }
-
     @Test
-    void isEmptyRow_ReturnsTrue_WhenAllCellsAreBlank() {
-        // Arrange
+    void shouldReturnTrueWhenAllCellsAreBlank() {
         Row mockRow = mock(Row.class);
         when(mockRow.getLastCellNum()).thenReturn((short) 3);
 
@@ -198,16 +177,13 @@ class ExcelUtilTest {
             when(mockCell.getCellType()).thenReturn(CellType.BLANK);
         }
 
-        // Act
         boolean result = ExcelUtil.isEmptyRow(mockRow);
 
-        // Assert
         assertTrue(result);
     }
 
     @Test
-    void isEmptyRow_ReturnsFalse_WhenAtLeastOneCellIsNotBlank() {
-        // Arrange
+    void shouldReturnFalseWhenAtLeastOneCellIsNotBlank() {
         Row mockRow = mock(Row.class);
         when(mockRow.getLastCellNum()).thenReturn((short) 3);
 
@@ -224,11 +200,8 @@ class ExcelUtilTest {
         when(mockRow.getCell(2)).thenReturn(mockCell3);
         when(mockCell3.getCellType()).thenReturn(CellType.BLANK);
 
-        // Act
         boolean result = ExcelUtil.isEmptyRow(mockRow);
 
-        // Assert
         assertFalse(result);
     }
-
 }

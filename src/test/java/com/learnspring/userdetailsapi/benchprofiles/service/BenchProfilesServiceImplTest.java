@@ -36,9 +36,9 @@ class BenchProfilesServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        benchProfilesDto = BenchProfilesInfoMock.createBenchProfilesDetails();
-        profile = BenchProfilesInfoMock.createProfile();
-        benchProfilesInfo = BenchProfilesInfoMock.setBenchProfilesInfo(benchProfilesDto);
+        benchProfilesDto = BenchProfilesInfoMock.shouldCreateBenchProfilesDetails();
+        profile = BenchProfilesInfoMock.shouldCreateProfile();
+        benchProfilesInfo = BenchProfilesInfoMock.shouldSetBenchProfilesInfo(benchProfilesDto);
     }
 
 

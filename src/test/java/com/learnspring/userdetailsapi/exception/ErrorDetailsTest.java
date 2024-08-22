@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ErrorDetailsTest {
 
     @Test
-    void testErrorDetailsInitialization() {
+    void shouldTestErrorDetailsInitialization() {
         // Arrange
         LocalDateTime expectedTimestamp = LocalDateTime.now();
         String expectedMessage = "Error occurred";

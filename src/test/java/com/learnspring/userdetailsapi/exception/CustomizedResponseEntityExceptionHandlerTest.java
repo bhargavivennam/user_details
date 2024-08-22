@@ -26,7 +26,7 @@ class CustomizedResponseEntityExceptionHandlerTest {
     }
 
     @Test
-    void handleAllExceptions_ReturnsInternalServerError() throws Exception {
+    void shouldReturnInternalServerErrorWhenHandlingAllExceptions() throws Exception {
         // Arrange
         Exception ex = new Exception("General exception");
 
@@ -39,7 +39,7 @@ class CustomizedResponseEntityExceptionHandlerTest {
     }
 
     @Test
-    void handleUserNotFoundException_ReturnsNotFound() throws Exception {
+    void shouldReturnNotFoundWhenHandlingUserNotFoundException() throws Exception {
         // Arrange
         UserNotFoundException ex = new UserNotFoundException("User not found");
 
@@ -52,7 +52,7 @@ class CustomizedResponseEntityExceptionHandlerTest {
     }
 
     @Test
-    void handleMethodArgumentNotValid_ReturnsBadRequest() {
+    void shouldReturnBadRequestWhenHandlingMethodArgumentNotValid() {
         // Arrange
         BindException bindException = new BindException(new Object(), "objectName");
         bindException.addError(new FieldError("objectName", "fieldName", "Invalid value"));

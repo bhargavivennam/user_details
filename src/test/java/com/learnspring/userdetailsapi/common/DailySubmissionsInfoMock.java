@@ -28,7 +28,7 @@ public class DailySubmissionsInfoMock {
 //            "dateCreated": "2024-08-07T14:24:44.622703",
 //            "lastUpdated": "2024-08-07T14:24:44.622746"
 //    },
-    public static DailySubmissionsInfo getDailySubmissionsInfo() {
+    public static DailySubmissionsInfo shouldGetDailySubmissionsInfo() {
 
         // Initialize sample data
         return DailySubmissionsInfo.builder()
@@ -50,7 +50,7 @@ public class DailySubmissionsInfoMock {
                 .build();
     }
 
-    public static DailySubmissionsDto createDailySubmissionsDetails() {
+    public static DailySubmissionsDto shouldCreateDailySubmissionsDetails() {
         return new DailySubmissionsDto(
                 LocalDate.parse("2024-01-02"),
                 "Sai Ravulapalli",
@@ -69,7 +69,7 @@ public class DailySubmissionsInfoMock {
         );
     }
 
-    public static DailySubmissionsInfo createDailySubmissionsProfile() {
+    public static DailySubmissionsInfo shouldCreateDailySubmissionsProfile() {
         DailySubmissionsInfo profile = new DailySubmissionsInfo();
         profile.setId(1L);
         profile.setDateOfEntry(LocalDate.parse("2024-01-02"));
@@ -90,7 +90,7 @@ public class DailySubmissionsInfoMock {
         return profile;
     }
 
-    public static DailySubmissionsInfo setDailySubmissionsInfo(DailySubmissionsDto dto) {
+    public static DailySubmissionsInfo shouldSetDailySubmissionsInfo(DailySubmissionsDto dto) {
         DailySubmissionsInfo profile = new DailySubmissionsInfo();
         profile.setDateOfEntry(dto.dateOfEntry());
         profile.setRecruiterName(dto.recruiterName());

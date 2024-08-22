@@ -32,7 +32,7 @@ public class InterviewsInfoMock {
 //    }
 
 
-    public static InterviewInfo getInterviewInfo() {
+    public static InterviewInfo shouldGetInterviewInfo() {
 
         return InterviewInfo.builder()
                 .id(1L)
@@ -55,7 +55,7 @@ public class InterviewsInfoMock {
                 .build();
     }
 
-    public static InterviewDto createInterviewDetails() {
+    public static InterviewDto shouldCreateInterviewDetails() {
         return new InterviewDto(
                 "Tanuja Chokkapu",
                 "Coding Test",
@@ -76,7 +76,7 @@ public class InterviewsInfoMock {
         );
     }
 
-    public static InterviewInfo createInterviewProfile() {
+    public static InterviewInfo shouldCreateInterviewProfile() {
         InterviewInfo profile = new InterviewInfo();
         profile.setId(1L);
         profile.setRecruiterName("Tanuja Chokkapu");
@@ -99,7 +99,7 @@ public class InterviewsInfoMock {
         return profile;
     }
 
-    public static InterviewInfo setInterviewInfo(InterviewDto dto) {
+    public static InterviewInfo shouldSetInterviewInfo(InterviewDto dto) {
         InterviewInfo profile = new InterviewInfo();
         profile.setRecruiterName(dto.recruiterName());
         profile.setRound(dto.round());

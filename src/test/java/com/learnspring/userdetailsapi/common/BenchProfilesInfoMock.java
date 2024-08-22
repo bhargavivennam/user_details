@@ -11,7 +11,7 @@ public class BenchProfilesInfoMock {
     private BenchProfilesInfoMock() {
     }
 
-    public static BenchProfilesInfo getBenchProfilesInfo() {
+    public static BenchProfilesInfo shouldGetBenchProfilesInfo() {
 
         // Initialize sample data
         return BenchProfilesInfo.builder()
@@ -45,7 +45,7 @@ public class BenchProfilesInfoMock {
                 .build();
     }
 
-    public static BenchProfilesDto createBenchProfilesDetails() {
+    public static BenchProfilesDto shouldCreateBenchProfilesDetails() {
         return new BenchProfilesDto(
                 "Mastan shaik",
                 "Muni Dinesh",
@@ -76,7 +76,7 @@ public class BenchProfilesInfoMock {
         );
     }
 
-    public static BenchProfilesInfo createProfile() {
+    public static BenchProfilesInfo shouldCreateProfile() {
         BenchProfilesInfo profile = new BenchProfilesInfo();
         profile.setId(1L);
         profile.setRecruiterName("Mastan shaik");
@@ -106,7 +106,7 @@ public class BenchProfilesInfoMock {
         return profile;
     }
 
-    public static BenchProfilesInfo setBenchProfilesInfo(BenchProfilesDto dto) {
+    public static BenchProfilesInfo shouldSetBenchProfilesInfo(BenchProfilesDto dto) {
         BenchProfilesInfo profile = new BenchProfilesInfo();
         profile.setRecruiterName(dto.recruiterName());
         profile.setConsultantName(dto.consultantName());

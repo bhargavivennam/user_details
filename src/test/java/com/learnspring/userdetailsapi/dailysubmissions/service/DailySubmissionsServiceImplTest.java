@@ -36,9 +36,9 @@ public class DailySubmissionsServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        dailySubmissionsDto = DailySubmissionsInfoMock.createDailySubmissionsDetails();
-        profile = DailySubmissionsInfoMock.createDailySubmissionsProfile();
-        dailySubmissionsInfo = DailySubmissionsInfoMock.setDailySubmissionsInfo(dailySubmissionsDto);
+        dailySubmissionsDto = DailySubmissionsInfoMock.shouldCreateDailySubmissionsDetails();
+        profile = DailySubmissionsInfoMock.shouldCreateDailySubmissionsProfile();
+        dailySubmissionsInfo = DailySubmissionsInfoMock.shouldSetDailySubmissionsInfo(dailySubmissionsDto);
     }
 
 

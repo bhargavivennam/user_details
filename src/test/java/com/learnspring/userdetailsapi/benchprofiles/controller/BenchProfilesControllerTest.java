@@ -109,7 +109,7 @@ class BenchProfilesControllerTest {
     void shouldReturnOkWhenUserFound() {
         // Arrange
         Long userId = 1L;
-        var mockUser = BenchProfilesInfoMock.getBenchProfilesInfo();
+        var mockUser = BenchProfilesInfoMock.shouldGetBenchProfilesInfo();
         Optional<BenchProfilesInfo> mockUserOptional = Optional.of(mockUser);
         when(benchProfilesService.getUserDetailsByID(userId)).thenReturn(Optional.of(mockUserOptional));
 
@@ -189,9 +189,9 @@ class BenchProfilesControllerTest {
 
     @Test
     void shouldCreateBenchProfileInfoSuccess() throws URISyntaxException {
-        BenchProfilesInfo savedbenchProfilesInfo = BenchProfilesInfoMock.createProfile();
+        BenchProfilesInfo savedbenchProfilesInfo = BenchProfilesInfoMock.shouldCreateProfile();
 
-        var benchProfilesDto = BenchProfilesInfoMock.createBenchProfilesDetails();
+        var benchProfilesDto = BenchProfilesInfoMock.shouldCreateBenchProfilesDetails();
 
         //define uriComponentsBuilder and add mock annotation and mock in the method
         BenchProfilesInfo benchProfilesInfo = new BenchProfilesInfo();
@@ -211,7 +211,7 @@ class BenchProfilesControllerTest {
     @Test
     void shouldThrowExceptionWhenCreateBenchProfileInfo() {
 
-        var benchProfilesDto = BenchProfilesInfoMock.createBenchProfilesDetails();
+        var benchProfilesDto = BenchProfilesInfoMock.shouldCreateBenchProfilesDetails();
 
         when(benchProfilesService.createUserInfoDetails(benchProfilesDto)).thenThrow(new RuntimeException("Unexpected error"));
 
@@ -222,41 +222,4 @@ class BenchProfilesControllerTest {
             assertEquals("Unexpected error", e.getMessage());
         }
     }
-
-//    @Test
-//    @WithMockUser(authorities = {"SCOPE_TEST"})
-//    public void shouldPingWithScopeTestAuthority() throws Exception {
-//        // Perform GET request on /ping
-////        mockMvc.perform(get("/api/users/ping"))
-////                .andExpect(status().isOk())
-////                .andExpect(content().string("Scopes: [SCOPE_TEST]"));
-//        Authentication authentication = Mockito.mock(Authentication.class);
-//// Mockito.whens() for your authorization object
-//        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
-//        Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
-//        SecurityContextHolder.setContext(securityContext);
-//    }
-
-//    @Test
-//    @WithMockUser(authorities = {"SCOPE_TEST"})
-//    public void shouldPingWithScopeTestAuthority() throws Exception {
-//        mockMvc.perform(get("/api/users/ping"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string("Scopes: [SCOPE_TEST]"));
-//    }
-//
-//    @Test
-//    @WithMockUser(authorities = {"OTHER_SCOPE"})
-//    public void shouldPingWithOtherScopeAuthority() throws Exception {
-//        // Perform GET request on /ping
-//        mockMvc.perform(get("/api/users/ping"))
-//                .andExpect(status().isForbidden()); // Since the required authority is not present
-//    }
-//
-//    @Test
-//    public void shouldPingWithoutAuthentication() throws Exception {
-//        // Perform GET request on /ping without authentication
-//        mockMvc.perform(get("/api/users/ping"))
-//                .andExpect(status().isUnauthorized());
-//    }
 }

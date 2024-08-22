@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DailySubmissionsInfoTest {
 
     @Test
-    public void testDailySubmissionsInfoGettersAndSetters() {
+    public void shouldGetDailySubmissionsInfoGettersAndSetters() {
         // Arrange
         LocalDate date = LocalDate.now();
         LocalDateTime dateTime = LocalDateTime.now();
@@ -52,7 +52,7 @@ public class DailySubmissionsInfoTest {
     }
 
     @Test
-    public void testDailySubmissionsInfoNoArgsConstructor() {
+    public void shouldCreateDailySubmissionsInfoUsingNoArgsConstructor() {
         // Act
         DailySubmissionsInfo dailySubmissionsInfo = new DailySubmissionsInfo();
 
@@ -61,7 +61,7 @@ public class DailySubmissionsInfoTest {
     }
 
     @Test
-    public void testDailySubmissionsInfoAllArgsConstructor() {
+    public void shouldCreateDailySubmissionsInfoUsingAllArgsConstructor() {
         // Arrange
         LocalDate date = LocalDate.now();
         LocalDateTime dateTime = LocalDateTime.now();
@@ -92,7 +92,7 @@ public class DailySubmissionsInfoTest {
     }
 
     @Test
-    public void testDailySubmissionsInfoEqualsAndHashCode() {
+    public void shouldTestDailySubmissionsInfoEqualsAndHashCode() {
         // Arrange
         LocalDate date = LocalDate.now();
         LocalDateTime dateTime = LocalDateTime.now();
@@ -139,7 +139,7 @@ public class DailySubmissionsInfoTest {
     }
 
     @Test
-    public void testDailySubmissionsInfoToString() {
+    public void shouldTestDailySubmissionsInfoToString() {
         // Arrange
         LocalDate date = LocalDate.now();
         LocalDateTime dateTime = LocalDateTime.now();

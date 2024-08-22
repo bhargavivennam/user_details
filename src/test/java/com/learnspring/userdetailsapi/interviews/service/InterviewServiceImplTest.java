@@ -36,9 +36,9 @@ public class InterviewServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        interviewDto = InterviewsInfoMock.createInterviewDetails();
-        profile = InterviewsInfoMock.createInterviewProfile();
-        interviewInfo = InterviewsInfoMock.setInterviewInfo(interviewDto);
+        interviewDto = InterviewsInfoMock.shouldCreateInterviewDetails();
+        profile = InterviewsInfoMock.shouldCreateInterviewProfile();
+        interviewInfo = InterviewsInfoMock.shouldSetInterviewInfo(interviewDto);
     }
 
 

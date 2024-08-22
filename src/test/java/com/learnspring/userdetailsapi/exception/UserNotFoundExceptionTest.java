@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class UserNotFoundExceptionTest {
 
     @Test
-    void testUserNotFoundExceptionMessage() {
+    void shouldTestUserNotFoundExceptionMessage() {
         // Arrange
         String expectedMessage = "User not found";
 

@@ -30,7 +30,7 @@ public class InterviewInfoTest {
 //    }
 
     @Test
-    public void testInterviewInfoGettersAndSetters() {
+    public void shouldTestInterviewInfoGettersAndSetters() {
         // Arrange
         LocalDate date = LocalDate.now();
         LocalDateTime dateTime = LocalDateTime.now();
@@ -76,7 +76,7 @@ public class InterviewInfoTest {
     }
 
     @Test
-    public void testInterviewsInfoNoArgsConstructor() {
+    public void shouldTestInterviewsInfoNoArgsConstructor() {
         // Act
         InterviewInfo interviewInfo = new InterviewInfo();
 
@@ -85,7 +85,7 @@ public class InterviewInfoTest {
     }
 
     @Test
-    public void testInterviewsInfoAllArgsConstructor() {
+    public void shouldTestInterviewsInfoAllArgsConstructor() {
         // Arrange
         LocalDate date = LocalDate.now();
         LocalDateTime dateTime = LocalDateTime.now();
@@ -119,7 +119,7 @@ public class InterviewInfoTest {
     }
 
     @Test
-    public void testInterviewsInfoEqualsAndHashCode() {
+    public void shouldTestInterviewsInfoEqualsAndHashCode() {
         // Arrange
         LocalDate date = LocalDate.now();
         LocalDateTime dateTime = LocalDateTime.now();
@@ -170,7 +170,7 @@ public class InterviewInfoTest {
     }
 
     @Test
-    public void testinterviewInfoToString() {
+    public void shouldTestinterviewInfoToString() {
         // Arrange
         LocalDate date = LocalDate.now();
         LocalDateTime dateTime = LocalDateTime.now();
