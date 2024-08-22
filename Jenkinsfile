@@ -6,14 +6,14 @@ pipeline {
         MAVEN_HOME = tool name: 'Maven 3.9.8', type: 'maven'
         SONAR_TOKEN = credentials('sonar-cloud-token')
         SONAR_ORGANIZATION = 'bhargavivennam'
-        BRANCH_NAME = 'unit-test-coverage'
+        BRANCH_NAME = 'main'
     }
 
     stages {
         stage('Checkout') {
             steps {
                 // Checkout code from GitHub
-                git url: 'https://github.com/bhargavivennam/user_details.git', branch: $BRANCH_NAME
+                git url: 'https://github.com/bhargavivennam/user_details.git', branch: "${BRANCH_NAME}"
             }
         }
 
@@ -38,6 +38,7 @@ pipeline {
                 }
             }
         }
+
         //SONAR
         //Docker Image
 
@@ -51,9 +52,9 @@ pipeline {
     }
 
     post {
-        always {
-            junit '**/target/surefire-reports/*.xml'
-        }
+        // always {
+        //     junit '**/target/surefire-reports/*.xml'
+        // }
         success {
             echo 'Build and Test were successful!'
         }
