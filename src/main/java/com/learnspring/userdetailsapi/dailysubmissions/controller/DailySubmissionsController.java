@@ -27,7 +27,7 @@ public class DailySubmissionsController {
 
     @PostMapping(value = "/upload-daily-submissions-excel", consumes = {"multipart/form-data"})
     public ResponseEntity<String> uploadExcel(@RequestParam("file") MultipartFile file) throws Exception {
-        dailySubmissionsService.createSubmissionDetails(file);
+        dailySubmissionsService.uploadSubmissionDetails(file);
         return new ResponseEntity<>("Excel data uploaded and inserted into database successfully.", HttpStatus.OK);
     }
 

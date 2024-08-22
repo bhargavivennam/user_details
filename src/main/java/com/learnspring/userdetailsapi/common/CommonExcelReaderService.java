@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -22,7 +21,7 @@ public class CommonExcelReaderService {
 
     @Value("${daily-submissions-excel-sheet-index}")
     private int dailySubmissionsSheetIndex;
-    
+
     @Value("${interviews-excel-sheet-index}")
     private int interviewsSheetIndex;
 
@@ -97,7 +96,7 @@ public class CommonExcelReaderService {
             var sheet = workbook.getSheetAt(interviewsSheetIndex);
             return StreamSupport.stream(sheet.spliterator(), false)
                     .skip(1) // Skip the header row
-                    .filter(Objects::nonNull)
+                    .filter(row -> !isEmptyRow(row))
                     .map(row -> {
                         var interview = new InterviewInfo();
                         interview.setRecruiterName(getStringCellValue(row, 0));

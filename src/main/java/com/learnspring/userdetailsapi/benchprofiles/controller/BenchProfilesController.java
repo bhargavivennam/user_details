@@ -29,7 +29,7 @@ public class BenchProfilesController {
 
     @PostMapping(value = "/upload-bench-profiles-excel", consumes = {"multipart/form-data"})
     public ResponseEntity<String> uploadExcel(@RequestParam("file") MultipartFile file) throws Exception {
-        benchProfilesService.createUserDetails(file);
+        benchProfilesService.uploadUserDetails(file);
         return new ResponseEntity<>("Excel data uploaded and inserted into database successfully.", HttpStatus.OK);
     }
 
@@ -43,6 +43,16 @@ public class BenchProfilesController {
 
         return ResponseEntity.created(location).build();
     }
+
+//    @PostMapping("/create-bench-profiles")
+//    public ResponseEntity<BenchProfilesInfo> createBenchProfileInfo(@Valid @RequestBody BenchProfilesDto benchProfilesDto) {
+//        var newBenchProfileInfo = benchProfilesService.createUserInfoDetails(benchProfilesDto);
+//        URI location = uriComponentsBuilder.path("/api/users/{id}")
+//                .buildAndExpand(newBenchProfileInfo.getId())
+//                .toUri();
+//
+//        return ResponseEntity.created(location).build();
+//    }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update Bench profiles User Details")
