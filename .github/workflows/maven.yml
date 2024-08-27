@@ -36,6 +36,26 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Build Docker image
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/user-details-ga:${{ github.sha }} .      
+    
+    - name: Push Docker image to Docker Hub
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/user-details-ga:${{ github.sha }}
+
+    - name: Tag the image with 'latest'
+      run: |
+          docker tag ${{ secrets.DOCKER_USERNAME }}/user-details-ga:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/user-details-ga:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/user-details-ga:latest
+  
+    - name: Run Docker Scout Action
+      uses: docker/scout-action@v1
+      with:
+          command: quickview,cves
+          organization: bsmahi
+          # token: ${{ secrets.DOCKER_SCOUT_TOKEN }}  # Make sure you have this token set in your secrets
+          image: ${{ secrets.DOCKER_USERNAME }}/user-details-ga:latest 
+
+
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
