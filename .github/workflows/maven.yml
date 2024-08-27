@@ -50,7 +50,7 @@ jobs:
     - name: Run Docker Scout Action
       uses: docker/scout-action@v1
       with:
-          command: quickview,cves
+          command: quickview,cves,recommendations
           organization: bhargavivennam
           # token: ${{ secrets.DOCKER_SCOUT_TOKEN }}  # Make sure you have this token set in your secrets
           image: ${{ secrets.DOCKER_USERNAME }}/user-details-ga:latest 
